@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Tecroot</title>
+    <!-- Favicon -->
+    <link rel="icon" href="2.png" type="image/png">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gamer-green: #32CD32;
+            --gamer-dark: #0d0d0d;
+            --gamer-light: #1a1a1a;
+            --gamer-accent: #00ff00;
+        }
+        
+        body {
+            font-family: 'Anta', sans-serif;
+            background-color: var(--gamer-dark);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 255, 0, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 255, 0, 0.05) 0%, transparent 20%);
+        }
+        
+        .gamer-nav {
+            background-color: rgba(0, 0, 0, 0.9) !important;
+            border-bottom: 2px solid var(--gamer-green);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+        
+        .logo-img {
+            height: 30px;
+            margin-right: 10px;
+        }
+        
+        .main-content {
+            flex: 1;
+            padding: 2rem 0;
+        }
+        
+        .page-header {
+            color: var(--gamer-green);
+            text-align: center;
+            margin-bottom: 3rem;
+            text-shadow: 0 0 10px rgba(50, 205, 50, 0.5);
+            position: relative;
+        }
+        
+        .page-header:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--gamer-green);
+            margin: 15px auto;
+            box-shadow: 0 0 10px var(--gamer-green);
+        }
+        
+        .contact-card {
+            background-color: var(--gamer-light);
+            border: 1px solid var(--gamer-green);
+            border-radius: 5px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .form-label {
+            color: var(--gamer-green);
+            font-weight: bold;
+        }
+        
+        .form-control {
+            background-color: #333;
+            color: white;
+            border: 1px solid var(--gamer-green);
+            border-radius: 0;
+            margin-bottom: 1rem;
+        }
+        
+        .form-control:focus {
+            background-color: #444;
+            color: white;
+            border-color: var(--gamer-accent);
+            box-shadow: 0 0 0 0.25rem rgba(50, 205, 50, 0.25);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+        }
+        
+        .btn-gamer {
+            background-color: var(--gamer-green);
+            color: #000;
+            border: none;
+            border-radius: 0;
+            padding: 10px 20px;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+        
+        .btn-gamer:hover {
+            background-color: var(--gamer-accent);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 255, 0, 0.3);
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+        
+        .contact-method {
+            background-color: var(--gamer-light);
+            border: 1px solid var(--gamer-green);
+            border-radius: 5px;
+            padding: 1.5rem;
+            width: 250px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .contact-method:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 0, 0.2);
+        }
+        
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--gamer-green);
+            margin-bottom: 1rem;
+        }
+        
+        .gamer-footer {
+            background-color: var(--gamer-dark);
+            color: var(--gamer-green);
+            text-align: center;
+            padding: 1rem;
+            border-top: 1px solid var(--gamer-green);
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Animation for form elements */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-element {
+            animation: fadeIn 0.5s ease forwards;
+            opacity: 0;
+        }
+        
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark gamer-nav">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="home.html">
+                <img src="1.png" alt="Tecroot Logo" class="logo-img">
+                Tecroot
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html"><i class="fas fa-home me-1"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.php"><i class="fas fa-gamepad me-1"></i> Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="aboutus.php"><i class="fas fa-envelope me-1"></i> About us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.php"><i class="fas fa-shopping-cart me-1"></i> Cart</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <h1 class="page-header">CONTACT TECROOT</h1>
+            
+            <div class="contact-card animate-element delay-1">
+                <form action="send_email.php" method="post" id="contactForm">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Your Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="subject" class="form-label">Subject</label>
+                        <input type="text" class="form-control" id="subject" name="subject" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea class="form-control" id="message" name="message" required></textarea>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-gamer">
+                            <i class="fas fa-paper-plane me-2"></i> SEND MESSAGE
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="contact-info">
+                <div class="contact-method animate-element delay-2">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email Us</h3>
+                    <p>omethhettiarachchi@gmail.com</p>
+                </div>
+                
+                <div class="contact-method animate-element delay-3">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Call Us</h3>
+                    <p>+1 (123) 456-7890</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="gamer-footer">
+        <div class="container">
+            <p class="mb-0">© <?php echo date('Y'); ?> TECROOT - ALL RIGHTS RESERVED</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.animate-element');
+            elements.forEach(el => {
+                el.style.opacity = '1';
+            });
+            
+            // Form submission handling
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    // You can add form validation here
+                    // e.preventDefault(); // Uncomment to handle with AJAX
+                });
+            }
+        });
+    </script>
+</body>
+</html>

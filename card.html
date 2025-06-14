@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATH-M20x - Tecroot</title>
+    <!-- Favicon -->
+    <link rel="icon" href="2.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anta&display=swap');
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Anta', sans-serif;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #1a4d1a;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            border-bottom: 2px solid #2e7d32;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            height: 40px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .logo-container span {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        nav ul li {
+            margin: 0 5px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 8px 12px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 4px;
+        }
+
+        nav ul li a i {
+            font-size: 14px;
+        }
+
+        nav ul li a:hover {
+            background-color: #2e7d32;
+            transform: translateY(-2px);
+        }
+
+        main {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: #1a1a1a;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+
+        .card__title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            background-color: #1a4d1a;
+            color: white;
+        }
+
+        .card__title h3 {
+            margin: 0;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        .card__title .icon {
+            background: #2e7d32;
+            padding: 8px 10px;
+            border-radius: 4px;
+            transition: transform 0.3s;
+        }
+
+        .card__title .icon:hover {
+            transform: scale(1.05);
+        }
+
+        .card__title .icon a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .card__body {
+            display: flex;
+            padding: 25px;
+        }
+
+        .half {
+            flex: 1;
+            padding: 0 15px;
+        }
+
+        .featured_text h1 {
+            font-size: 36px;
+            color: #4CAF50;
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+
+        .featured_text .sub {
+            font-size: 18px;
+            color: #aaa;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .featured_text .price {
+            font-size: 28px;
+            color: #4CAF50;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .image img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            border: 1px solid #333;
+            transition: transform 0.3s;
+        }
+
+        .image img:hover {
+            transform: scale(1.02);
+        }
+
+        .product-meta {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .brand {
+            font-weight: bold;
+            color: #4CAF50;
+            padding: 5px 10px;
+            background: rgba(76, 175, 80, 0.1);
+            border-radius: 4px;
+        }
+
+        .reviews {
+            color: #f7c01b;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .description {
+            margin-bottom: 20px;
+        }
+
+        .description p {
+            line-height: 1.6;
+            color: #ddd;
+        }
+
+        .stock {
+            display: inline-block;
+            background: rgba(46, 125, 50, 0.2);
+            color: #4CAF50;
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            border: 1px solid #2e7d32;
+        }
+
+        .stock i {
+            margin-right: 5px;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .product-actions button {
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border: 2px solid;
+            background: transparent;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wishlist {
+            color: #ff4757;
+            border-color: #ff4757;
+        }
+
+        .wishlist:hover {
+            background: rgba(255, 71, 87, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.3);
+        }
+
+        .wishlist i {
+            transition: transform 0.3s;
+        }
+
+        .wishlist:hover i {
+            transform: scale(1.2);
+        }
+
+        .compare {
+            color: #2e86de;
+            border-color: #2e86de;
+        }
+
+        .compare:hover {
+            background: rgba(46, 134, 222, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 134, 222, 0.3);
+        }
+
+        .compare i {
+            transition: transform 0.3s;
+        }
+
+        .compare:hover i {
+            transform: rotate(180deg);
+        }
+
+        .features {
+            margin-bottom: 20px;
+        }
+
+        .features h4 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+            font-size: 20px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
+
+        .features ul {
+            list-style-position: inside;
+            color: #ddd;
+        }
+
+        .features li {
+            margin-bottom: 8px;
+            padding: 5px 0;
+            border-bottom: 1px dashed #333;
+        }
+
+        .features li:last-child {
+            border-bottom: none;
+        }
+
+        .share-section {
+            margin-bottom: 20px;
+        }
+
+        .share {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            background: linear-gradient(135deg, #1a4d1a, #2e7d32);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .share:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(46, 125, 50, 0.3);
+        }
+
+        .share::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .share:hover::after {
+            left: 100%;
+        }
+
+        .card__footer {
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1a1a1a;
+            border-top: 1px solid #333;
+        }
+
+        .recommend p {
+            color: #aaa;
+            font-style: italic;
+        }
+
+        .add-to-cart {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+            background: #2e7d32;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .add-to-cart:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4);
+            background: #1b5e20;
+        }
+
+        .add-to-cart:active {
+            transform: translateY(-1px);
+        }
+
+        .add-to-cart::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .add-to-cart:hover::before {
+            left: 100%;
+        }
+
+        footer {
+            background-color: #1a4d1a;
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 50px;
+            border-top: 2px solid #2e7d32;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px;
+            }
+            
+            nav ul li a {
+                padding: 6px 8px;
+                font-size: 14px;
+            }
+            
+            .card__body {
+                flex-direction: column;
+            }
+            
+            .half {
+                padding: 15px 0;
+            }
+
+            .product-actions {
+                justify-content: center;
+            }
+            
+            .product-actions button {
+                flex: 1 1 120px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="1.png" alt="Tecroot Logo" class="logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="home.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="products.php"><i class="fas fa-shopping-bag"></i> Shop</a></li>
+                <li><a href="aboutus.php"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="Contactpage.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="customerProfile.php"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="cart.php"><i class="fas fa-shopping-cart"></i> Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="card">
+            <div class="card__title">
+                <div class="icon">
+                    <a href="products.php"><i class="fas fa-arrow-left"></i></a>
+                </div>
+                <h3>NEW</h3>
+            </div>
+            <div class="card__body">
+                <div class="half">
+                    <div class="featured_text">
+                        <h1>ATH-M20x</h1>
+                        <p class="sub">Professional Headphones</p>
+                        <p class="price">Rs 28,800.00</p>
+                    </div>
+                    <div class="image">
+                        <img src="t-1.jpg" alt="ATH-M20x Professional Headphones">
+                    </div>
+                </div>
+                <div class="half">
+                    <div class="product-meta">
+                        <span class="brand">audio-technica</span>
+                        <span class="reviews"><i class="fas fa-star"></i> 4.8 (120 reviews)</span>
+                    </div>
+                    <div class="description">
+                        <p>Experience studio-quality monitoring with exceptional clarity. The ATH-M20x professional headphones deliver accurate audio across an extended frequency range with enhanced bass response and minimal distortion.</p>
+                    </div>
+                    <span class="stock"><i class="fas fa-check-circle"></i> In stock (15 available)</span>
+                    <div class="product-actions">
+                        <button class="wishlist" data-tooltip="Add to wishlist"><i class="far fa-heart"></i> Wishlist</button>
+                        <button class="compare" data-tooltip="Compare with similar products"><i class="fas fa-exchange-alt"></i> Compare</button>
+                    </div>
+                    <div class="features">
+                        <h4>Key Features:</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> 40mm drivers with rare earth magnets</li>
+                            <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Circumaural design for isolation</li>
+                            <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Professional-grade earpads</li>
+                            <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Single-side cable exit</li>
+                            <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> 15Hz - 20kHz frequency response</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card__footer">
+                <div class="recommend">
+                    <p><i class="fas fa-credit-card"></i> Installment plans available at checkout</p>
+                </div>
+                <div class="action">
+                    <a href="cart.php">
+                        <button type="button" class="add-to-cart">
+                            <i class="fas fa-shopping-cart"></i> Add to cart
+                        </button>
+                    </a>
+                </div>                
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2023 Tecroot. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Wishlist functionality
+        const wishlistBtn = document.querySelector('.wishlist');
+        wishlistBtn.addEventListener('click', function() {
+            this.classList.toggle('active');
+            const icon = this.querySelector('i');
+            if (this.classList.contains('active')) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                this.innerHTML = '<i class="fas fa-heart"></i> Saved';
+            } else {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+                this.innerHTML = '<i class="far fa-heart"></i> Wishlist';
+            }
+        });
+
+        // Add to cart animation
+        const addToCartBtn = document.querySelector('.add-to-cart');
+        addToCartBtn.addEventListener('click', function() {
+            this.innerHTML = '<i class="fas fa-check"></i> Added to Cart';
+            this.style.backgroundColor = '#4CAF50';
+            setTimeout(() => {
+                this.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to cart';
+                this.style.backgroundColor = '#2e7d32';
+            }, 2000);
+        });
+
+        // Tooltip functionality
+        const buttons = document.querySelectorAll('[data-tooltip]');
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                const tooltip = document.createElement('span');
+                tooltip.className = 'tooltip';
+                tooltip.textContent = this.getAttribute('data-tooltip');
+                document.body.appendChild(tooltip);
+                
+                const rect = this.getBoundingClientRect();
+                tooltip.style.left = `${rect.left + rect.width/2 - tooltip.offsetWidth/2}px`;
+                tooltip.style.top = `${rect.top - 30}px`;
+                
+                setTimeout(() => {
+                    tooltip.style.opacity = '1';
+                    tooltip.style.transform = 'translateY(0)';
+                }, 10);
+                
+                this.addEventListener('mouseleave', () => {
+                    tooltip.remove();
+                });
+            });
+        });
+    </script>
+</body>
+</html>
